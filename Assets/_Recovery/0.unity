@@ -221,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530510458077599003, guid: f3afc3d4b4d21024fb9a89145d219133, type: 3}
       propertyPath: m_Name
-      value: ObjectSelector
+      value: CellSelector
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
