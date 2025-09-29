@@ -12,6 +12,9 @@ public class MapGenerator : MonoBehaviour
     public GameObject asphaltRoad;
     public Transform parent;
 
+    public HumanController humanPrefab;
+    public HumanController humanInstance = null;
+
     void Start()
     {
         
@@ -30,7 +33,6 @@ public class MapGenerator : MonoBehaviour
                 GameObject initializedObject = Instantiate(gameObject);
                 initializedObject.transform.localScale = new Vector3(cellSize, 0.25f * cellSize, cellSize);
                 initializedObject.transform.position = position;
-
             }
         }
 
@@ -52,7 +54,6 @@ public class MapGenerator : MonoBehaviour
                 GameObject initializedObject = Instantiate(gameObject, parent);
                 initializedObject.transform.localScale = new Vector3(cellSize, 0.25f * cellSize, cellSize);
                 initializedObject.transform.position = position;
-
             }
         }
     }
