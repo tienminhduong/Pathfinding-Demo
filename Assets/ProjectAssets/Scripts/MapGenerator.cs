@@ -47,7 +47,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (int j = 0; j < col; j++)
             {
-                Vector3 position = new Vector3(i * cellSize, 0, j * cellSize);
+                Vector3 position = new Vector3(-i * cellSize, 0, j * cellSize);
                 GameObject gameObject = asphaltRoad;
                 GameObject initializedObject = Instantiate(gameObject, parent);
                 initializedObject.transform.localScale = new Vector3(cellSize, 0.25f * cellSize, cellSize);
