@@ -42,7 +42,6 @@ public class CellSelector : MonoBehaviour
     {
         OnObjectDeselected();
         selectedObject = obj;
-        OnCellSelected?.Invoke(obj);
         Renderer renderer = obj.GetComponent<Renderer>();
         if (renderer != null)
         {
@@ -58,7 +57,6 @@ public class CellSelector : MonoBehaviour
         {
             return;
         }
-        OnCellDeselected?.Invoke();
         Renderer renderer = selectedObject.GetComponent<Renderer>();
         if (renderer != null)
         {
