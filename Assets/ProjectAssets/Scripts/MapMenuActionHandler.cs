@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuActionHandler : MonoBehaviour
+public class MapMenuActionHandler : MonoBehaviour
 {
     public MapGenerator mapGenerator = null;
     public TMP_InputField inpRow = null;
