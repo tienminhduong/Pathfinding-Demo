@@ -1,14 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ObjectSelector : MonoBehaviour
 {
-    private GameObject selectedObject;
-    public GameObject SelectedObject { get => selectedObject; }
-
+    private List<GameObject> selectedObjects = new List<GameObject>();
+    public List<GameObject> SelectedObjects { get => selectedObjects; }
     private Camera cam;
-    private Material selectedMaterial;
 
     void Start()
     {
@@ -22,40 +22,64 @@ public class ObjectSelector : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                OnObjectSelected(hit.collider.gameObject);
+                GameObject clickedObj = hit.collider.gameObject;
+                bool isCtrlPressed = Keyboard.current.ctrlKey.isPressed;
+
+                if (!isCtrlPressed)
+                { 
+                    DeselectAll();
+                }
+
+                if (!selectedObjects.Contains(clickedObj))
+                {
+                    OnObjectSelected(clickedObj);
+                }
+                else if (isCtrlPressed)
+                {
+                    OnObjectDeselected(clickedObj);
+                }
             }
             else
             {
-                OnObjectDeselected();
+                DeselectAll();
             }
         }
     }
 
-    private void OnObjectDeselected()
+    private void DeselectAll()
     {
-        if (selectedMaterial != null)
+        Renderer renderer = null;
+        foreach (GameObject obj in selectedObjects)
         {
-            selectedMaterial.DisableKeyword("_EMISSION");
-
-            selectedMaterial = null;
-     
+            renderer = obj.GetComponent<Renderer>();
+            if(renderer != null)
+            {
+                renderer.material.DisableKeyword("_EMISSION");
+            }    
         }
-        selectedObject = null;
+        selectedObjects.Clear();
+    }
+
+    private void OnObjectDeselected(GameObject obj)
+    {
+        selectedObjects.Remove(obj);
+        Renderer renderer = obj.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material.DisableKeyword("_EMISSION");
+        }    
+    
 
     }
     
     private void OnObjectSelected(GameObject selectedObject)
     {
-        OnObjectDeselected();
-        this.selectedObject = selectedObject;
+        this.selectedObjects.Add(selectedObject);
         Renderer renderer = selectedObject.GetComponent<Renderer>();
         if (renderer != null)
         {
-            selectedMaterial = renderer.material;
-
-            selectedMaterial.EnableKeyword("_EMISSION");
+            renderer.material.EnableKeyword("_EMISSION");
         }
     }
-
 
 }
