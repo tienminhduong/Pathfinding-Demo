@@ -9,11 +9,30 @@ public class MapMenuActionHandler : MonoBehaviour
     public TMP_InputField inpRow = null;
     public TMP_InputField inpCol = null;
     public Button btn_Start = null;
+    public Button btn_GenerateHuman = null;
+
+    GameObject selectedCell = null;
+
+    public GameObject humanPrefab;
+
+    private void OnEnable()
+    {
+        CellSelector.OnCellSelected += SelectCell;
+        CellSelector.OnCellDeselected += DeselectCell;
+    }
+
+    private void OnDisable()
+    {
+        CellSelector.OnCellSelected -= SelectCell;
+        CellSelector.OnCellDeselected -= DeselectCell;
+    }
 
     void Start()
     {
         inpCol.onValueChanged.AddListener(onInputChange);
         inpRow.onValueChanged.AddListener(onInputChange);
+
+        btn_GenerateHuman.interactable = false;
     }
 
     private void onInputChange(string arg0)
@@ -54,5 +73,30 @@ public class MapMenuActionHandler : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void SelectCell(GameObject cell)
+    {
+        selectedCell = cell;
+        btn_GenerateHuman.interactable = true;
+    }
+
+    void DeselectCell()
+    {
+        selectedCell = null;
+        btn_GenerateHuman.interactable = false;
+    }
+
+    public void GenerateHuman()
+    {
+        Debug.Log("Function called");
+        if (selectedCell == null || humanPrefab == null)
+        {
+            Debug.LogError("No cell selected or humanPrefab is null");
+            return;
+        }
+        Debug.Log("Human Generated");
+        Vector3 position = selectedCell.transform.position;
+        Instantiate(humanPrefab, position, Quaternion.identity);
     }
 }
