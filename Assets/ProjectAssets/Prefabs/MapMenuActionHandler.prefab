@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4716880320560598061}
   - component: {fileID: 7155571294852710575}
   m_Layer: 0
-  m_Name: MenuActionHandler
+  m_Name: MapMenuActionHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
