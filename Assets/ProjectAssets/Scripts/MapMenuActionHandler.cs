@@ -30,6 +30,26 @@ public class MapMenuActionHandler : MonoBehaviour
     {
         inpCol.onValueChanged.AddListener(onInputChange);
         inpRow.onValueChanged.AddListener(onInputChange);
+        btn_Start.onClick.AddListener(() =>
+        {
+            var map = mapGenerator.Map;
+            string s = "\n";
+            if (map != null)
+            {
+                s = map.GetLength(0) + " x " + map.GetLength(1);
+                Debug.Log(s);
+               
+                for(int i = 0; i < map.GetLength(0); i++)
+                {
+                    s = "";
+                    for (int j = 0; j < map.GetLength(1); j++)
+                    {
+                        s += map[i, j].ToString() + " ";
+                    }
+                    Debug.Log(s);
+                }
+            }
+        });
     }
 
     private void onInputChange(string arg0)
@@ -49,22 +69,6 @@ public class MapMenuActionHandler : MonoBehaviour
         }
     }
 
-    private void generateAfterClick()
-    {
-        string strRow = inpRow.text;
-        string strCol = inpCol.text;
-        try
-        {
-            int row = int.Parse(strRow);
-            int col = int.Parse(strCol);
-            mapGenerator.destroyOldMap();
-            mapGenerator.generate(row, col);
-        }
-        catch(Exception e) 
-        {
-            Debug.Log(e.Message);
-        }
-    }
 
     // Update is called once per frame
     void Update()

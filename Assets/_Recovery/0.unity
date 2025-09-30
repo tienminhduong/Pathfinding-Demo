@@ -1247,6 +1247,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 460025120}
     - target: {fileID: 5485549808056635457, guid: e584fbbd6e3598448bc058e3a609e479, type: 3}
+      propertyPath: barrier
+      value: 
+      objectReference: {fileID: 3260069680359143854, guid: 92f3504dac04361459bed6022c308d1f, type: 3}
+    - target: {fileID: 5485549808056635457, guid: e584fbbd6e3598448bc058e3a609e479, type: 3}
       propertyPath: columns
       value: 10
       objectReference: {fileID: 0}
@@ -1262,6 +1266,10 @@ PrefabInstance:
       propertyPath: asphaltRoad
       value: 
       objectReference: {fileID: 3016985413252299298, guid: 0e02ddbbe7fa7fd45847bcea8a355432, type: 3}
+    - target: {fileID: 5485549808056635457, guid: e584fbbd6e3598448bc058e3a609e479, type: 3}
+      propertyPath: crowdedRoad
+      value: 
+      objectReference: {fileID: 370520927284439494, guid: 7788134b4729e1b44afe0812f8fbe515, type: 3}
     - target: {fileID: 5814518940796873789, guid: e584fbbd6e3598448bc058e3a609e479, type: 3}
       propertyPath: m_Name
       value: MapGenerator

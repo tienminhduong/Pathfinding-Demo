@@ -1,3 +1,4 @@
+using Assets.ProjectAssets.ConstantValue;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,44 @@ public class RoadTypeMenuActionHandler : MonoBehaviour
         btnDirtRoad.onClick.AddListener(() =>
         {
             GameObject cellSelected = cellSelector.SelectedObject;
-            Debug.Log(cellSelected == null ? "Null" : cellSelected.transform.position.ToString());
+           
             if (cellSelected != null)
             {
-                mapGenerator.changeTo(cellSelected, "Dirt");
+                mapGenerator.changeTo(cellSelected, ConstantValue.RoadType.DirtRoad);
             }
         });
+
+        btnAsphaltRoad.onClick.AddListener(() =>
+        {
+            GameObject cellSelected = cellSelector.SelectedObject;
+
+            if (cellSelected != null)
+            {
+                mapGenerator.changeTo(cellSelected, ConstantValue.RoadType.AsphaltRoad);
+            }
+        });
+
+        btnCrowdedRoad.onClick.AddListener(() =>
+        {
+            GameObject cellSelected = cellSelector.SelectedObject;
+
+            if (cellSelected != null)
+            {
+                mapGenerator.changeTo(cellSelected, ConstantValue.RoadType.CrowdedRoad);
+            }
+        });
+
+        btnBarrier.onClick.AddListener(() =>
+        {
+            GameObject cellSelected = cellSelector.SelectedObject;
+
+            if (cellSelected != null)
+            {
+                mapGenerator.changeTo(cellSelected, ConstantValue.RoadType.Barrier);
+            }
+        });
+
+
     }
 
     void Update()
