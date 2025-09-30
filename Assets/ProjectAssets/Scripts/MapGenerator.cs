@@ -65,4 +65,26 @@ public class MapGenerator : MonoBehaviour
             Destroy(i.gameObject);
         }
     }
+
+    internal void changeTo(GameObject cellSelected, string v)
+    {
+        if (v.Equals("Dirt"))
+        {
+            Vector3 position = cellSelected.transform.position;
+            Vector3 scale = cellSelected.transform.localScale;
+            Destroy(cellSelected);
+            GameObject initializedObject = Instantiate(dirtRoad, parent);
+            initializedObject.transform.localScale = scale;
+            initializedObject.transform.position = position;
+        }
+        else if (v.Equals("Asphalt"))
+        {
+            Vector3 position = cellSelected.transform.position;
+            Destroy(cellSelected);
+            GameObject initializedObject = Instantiate(asphaltRoad, parent);
+            initializedObject.transform.localScale = new Vector3(cellSize, 0.25f * cellSize, cellSize);
+            initializedObject.transform.position = position;
+        }
+        Destroy(cellSelected);
+    }
 }

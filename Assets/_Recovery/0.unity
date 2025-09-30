@@ -685,6 +685,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1491117260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4410186931820135842, guid: b63abf1833df0534bb016825255fef04, type: 3}
+  m_PrefabInstance: {fileID: 360151286876468918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1499751327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7101843282615400459, guid: b63abf1833df0534bb016825255fef04, type: 3}
+  m_PrefabInstance: {fileID: 360151286876468918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1754122699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4730840293198083051, guid: b63abf1833df0534bb016825255fef04, type: 3}
+  m_PrefabInstance: {fileID: 360151286876468918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &1817176315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2171561545866702631, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
@@ -701,6 +734,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6660276344354144006, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
   m_PrefabInstance: {fileID: 3648920207788685774}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1959783156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4559839545976194828, guid: b63abf1833df0534bb016825255fef04, type: 3}
+  m_PrefabInstance: {fileID: 360151286876468918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &2147155028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5659167242709705432, guid: f3afc3d4b4d21024fb9a89145d219133, type: 3}
+  m_PrefabInstance: {fileID: 130924634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2308d005765534b49932528441e30464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectSelector
 --- !u!1001 &360151286876468918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1268,6 +1323,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: TypeRoadMenuActionHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 9147666413972231653, guid: 8d43b15c161eeaf49ba5699060610720, type: 3}
+      propertyPath: btnBarrier
+      value: 
+      objectReference: {fileID: 1754122699}
+    - target: {fileID: 9147666413972231653, guid: 8d43b15c161eeaf49ba5699060610720, type: 3}
+      propertyPath: btnDirtRoad
+      value: 
+      objectReference: {fileID: 1491117260}
+    - target: {fileID: 9147666413972231653, guid: 8d43b15c161eeaf49ba5699060610720, type: 3}
+      propertyPath: cellSelector
+      value: 
+      objectReference: {fileID: 2147155028}
+    - target: {fileID: 9147666413972231653, guid: 8d43b15c161eeaf49ba5699060610720, type: 3}
+      propertyPath: mapGenerator
+      value: 
+      objectReference: {fileID: 1088790457}
+    - target: {fileID: 9147666413972231653, guid: 8d43b15c161eeaf49ba5699060610720, type: 3}
+      propertyPath: btnAsphaltRoad
+      value: 
+      objectReference: {fileID: 1959783156}
+    - target: {fileID: 9147666413972231653, guid: 8d43b15c161eeaf49ba5699060610720, type: 3}
+      propertyPath: btnCrowdedRoad
+      value: 
+      objectReference: {fileID: 1499751327}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

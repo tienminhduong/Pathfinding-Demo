@@ -13,6 +13,7 @@ public class CellSelector : MonoBehaviour
 
     public static UnityAction<GameObject> OnCellSelected;
     public static UnityAction OnCellDeselected;
+    public GameObject SelectedObject { get => selectedObject; } 
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class CellSelector : MonoBehaviour
     {
         OnObjectDeselected();
         selectedObject = obj;
+        OnCellSelected.Invoke(selectedObject);
         Renderer renderer = obj.GetComponent<Renderer>();
         if (renderer != null)
         {
@@ -49,14 +51,14 @@ public class CellSelector : MonoBehaviour
         }    
     
 
-    }
-    
-    private void OnObjectDeselected()
+    } 
+    public void OnObjectDeselected()
     {
         if(selectedObject == null)
         {
             return;
         }
+        OnCellDeselected.Invoke();
         Renderer renderer = selectedObject.GetComponent<Renderer>();
         if (renderer != null)
         {
