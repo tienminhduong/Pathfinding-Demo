@@ -2,12 +2,19 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CellSelector : MonoBehaviour
 {
     private GameObject selectedObject;
     private Camera cam;
+
+    public static UnityAction<GameObject> OnCellSelected;
+    public static UnityAction OnCellDeselected;
+    public GameObject SelectedObject { get => selectedObject; } 
 
     void Start()
     {
@@ -18,6 +25,8 @@ public class CellSelector : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
@@ -35,6 +44,8 @@ public class CellSelector : MonoBehaviour
     {
         OnObjectDeselected();
         selectedObject = obj;
+
+        OnCellSelected.Invoke(selectedObject);
         Renderer renderer = obj.GetComponent<Renderer>();
         if (renderer != null)
         {
@@ -42,6 +53,8 @@ public class CellSelector : MonoBehaviour
         }    
     
 
+    } 
+    public void OnObjectDeselected()
     }
     
     private void OnObjectDeselected()
@@ -50,6 +63,7 @@ public class CellSelector : MonoBehaviour
         {
             return;
         }
+        OnCellDeselected.Invoke();
         Renderer renderer = selectedObject.GetComponent<Renderer>();
         if (renderer != null)
         {
