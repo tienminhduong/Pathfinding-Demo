@@ -433,6 +433,17 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &756750870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9076606244320508105, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
+  m_PrefabInstance: {fileID: 3648920207788685774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bb6cab8043db846a2861dd6b72a057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuActionHandler
 --- !u!1 &812807316
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +685,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1817176315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2171561545866702631, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
+  m_PrefabInstance: {fileID: 3648920207788685774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &1877833080 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6660276344354144006, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
@@ -687,6 +709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 812807320}
     m_Modifications:
+    - target: {fileID: 747723974603741669, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_text
+      value: Generate Human
+      objectReference: {fileID: 0}
     - target: {fileID: 996661812201690089, guid: b63abf1833df0534bb016825255fef04, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -717,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 996661812201690089, guid: b63abf1833df0534bb016825255fef04, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 127.9181
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 996661812201690089, guid: b63abf1833df0534bb016825255fef04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -783,6 +809,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 756750870}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateHuman
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MapMenuActionHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427271659554639084, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164885364608136064, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_Name
+      value: btnGenerateHuman
+      objectReference: {fileID: 0}
     - target: {fileID: 4312277076148661734, guid: b63abf1833df0534bb016825255fef04, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -828,6 +886,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6198532081207086922, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013449916144059117, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013449916144059117, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013449916144059117, guid: b63abf1833df0534bb016825255fef04, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013449916144059117, guid: b63abf1833df0534bb016825255fef04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1044,6 +1118,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9076606244320508105, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
+      propertyPath: btn_Start
+      value: 
+      objectReference: {fileID: 1817176315}
+    - target: {fileID: 9076606244320508105, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
+      propertyPath: humanPrefab
+      value: 
+      objectReference: {fileID: 3866924179875422930, guid: b959cd738359d474ba221b0a6f1d8c54, type: 3}
     - target: {fileID: 9076606244320508105, guid: d7eb4b26dabd5254c8c8b58d91fb226d, type: 3}
       propertyPath: mapGenerator
       value: 
