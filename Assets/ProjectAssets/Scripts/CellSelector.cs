@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -43,6 +44,7 @@ public class CellSelector : MonoBehaviour
     {
         OnObjectDeselected();
         selectedObject = obj;
+
         OnCellSelected.Invoke(selectedObject);
         Renderer renderer = obj.GetComponent<Renderer>();
         if (renderer != null)
@@ -53,6 +55,9 @@ public class CellSelector : MonoBehaviour
 
     } 
     public void OnObjectDeselected()
+    }
+    
+    private void OnObjectDeselected()
     {
         if(selectedObject == null)
         {
