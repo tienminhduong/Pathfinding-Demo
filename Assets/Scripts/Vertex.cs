@@ -1,18 +1,24 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     private bool isDragging = false;
     private Vector3 offset; // Offset between mouse position and object's pivot
+    private Sprite normalSprite;
+    [SerializeField] Sprite highLightSprite;
+    private bool isSelected = false;
+    private SpriteRenderer spr = null;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        spr = gameObject.GetComponent<SpriteRenderer>();
+        normalSprite = spr.sprite;
+    }
 
     void Update()
     {
@@ -22,7 +28,9 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(
                 new Vector3(mouseScreen.x, mouseScreen.y, Camera.main.WorldToScreenPoint(transform.position).z)
             );
+    
             transform.position = mouseWorld + offset;
+            
         }
     }
 
@@ -31,17 +39,33 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (VerticesManager.Instance.CurrentInputState == InputState.CreateEdge)
             return;
 
-        Debug.Log("hehe");
         isDragging = true;
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
         offset = transform.position - Camera.main.ScreenToWorldPoint(
             new Vector3(mouseScreen.x, mouseScreen.y, Camera.main.WorldToScreenPoint(transform.position).z)
         );
+       
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("huhu");
         isDragging = false;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (VerticesManager.Instance.CurrentInputState == InputState.CreateEdge)
+        {
+            isSelected = !isSelected;
+            if (isSelected)
+            {
+                spr.sprite = highLightSprite;
+            }
+            else
+            {
+                spr.sprite = normalSprite;
+            }
+        }
+            
     }
 }
