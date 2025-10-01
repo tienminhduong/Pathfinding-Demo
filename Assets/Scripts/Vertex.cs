@@ -28,6 +28,9 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (VerticesManager.Instance.CurrentInputState == InputState.CreateEdge)
+            return;
+
         Debug.Log("hehe");
         isDragging = true;
         Vector2 mouseScreen = Mouse.current.position.ReadValue();
