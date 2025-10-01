@@ -68,4 +68,10 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         }
             
     }
+
+    public void Unselect()
+    {
+        isSelected = false;
+        spr.sprite = normalSprite;
+    }    
 }
