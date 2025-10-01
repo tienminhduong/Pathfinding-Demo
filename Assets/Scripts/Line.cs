@@ -17,7 +17,7 @@ public class Line : MonoBehaviour
         
     }
 
-    public void InitLine(Vector3 start, Vector3 end)
+    public int InitLine(Vector3 start, Vector3 end)
     {
         var lr = gameObject.GetComponent<LineRenderer>();
         transform.GetChild(0).transform.position
@@ -30,5 +30,6 @@ public class Line : MonoBehaviour
 
         var distance = Vector3.Distance(start, end);
         weightText.text = distance.ToString("F0");
+        return int.Parse(weightText.text);
     }
 }

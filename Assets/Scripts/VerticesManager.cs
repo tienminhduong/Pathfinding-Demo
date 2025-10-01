@@ -66,6 +66,11 @@ public class VerticesManager : MonoBehaviour
         }
     }
 
+    public void EnableCreateEdge()
+    {
+        state = InputState.CreateEdge;
+    }
+
     public void EnableCreateBubbles()
     {
         state = InputState.SelectStartingPoint;
@@ -75,6 +80,11 @@ public class VerticesManager : MonoBehaviour
     {
         Instantiate(bubblesPrefab, position, Quaternion.identity);
         state = InputState.MoveVertex;
+    }
+
+    public void EnableSelectGoal()
+    {
+        state = InputState.SelectEndingPoint;
     }
 }
 

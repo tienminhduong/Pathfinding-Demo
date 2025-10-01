@@ -5,16 +5,48 @@ using UnityEngine;
 public class Bubbles : MonoBehaviour
 {
     [SerializeField] List<int> path;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         //transform.DOMove()
+    }
+
+    private void SelectATPAth()
+    {
+        path = AlgorithmHandler.Instance.ATPath;
+        Move();
+    }
+
+    private void SelectAKTPath()
+    {
+        path = AlgorithmHandler.Instance.AKTPath;
+        Move();
+    }
+
+    private void SelectAStarPath()
+    {
+        path = AlgorithmHandler.Instance.AStarPath;
+        Move();
+    }
+
+    private void OnEnable()
+    {
+        AlgorithmHandler.OnATPressed += SelectATPAth;
+        AlgorithmHandler.OnAKTPressed += SelectAKTPath;
+        AlgorithmHandler.OnAStarPressed += SelectAStarPath;
+    }
+
+    private void OnDisable()
+    {
+        AlgorithmHandler.OnATPressed -= SelectATPAth;
+        AlgorithmHandler.OnAKTPressed -= SelectAKTPath;
+        AlgorithmHandler.OnAStarPressed -= SelectAStarPath;
     }
 
 

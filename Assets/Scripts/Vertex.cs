@@ -16,6 +16,9 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     public static UnityAction<Vertex> OnVertexSelected;
     public static UnityAction<Vertex> OnVertexDeselected;
 
+    public static UnityAction<Vertex> OnStartVertexSelected;
+    public static UnityAction<Vertex> OnGoalVertexSelected;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -75,6 +78,12 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         else if (VerticesManager.Instance.CurrentInputState == InputState.SelectStartingPoint)
         {
             VerticesManager.Instance.CreateBubbles(transform.position);
+            OnStartVertexSelected?.Invoke(this);
+        }
+        else if (VerticesManager.Instance.CurrentInputState == InputState.SelectEndingPoint)
+        {
+            OnGoalVertexSelected?.Invoke(this);
+            spr.sprite = highLightSprite;
         }
     }
 

@@ -9,7 +9,7 @@ public class EdgeDrawer : MonoBehaviour
     [SerializeField] Line linePrefab;
     List<Vertex> vertexStack = new();
 
-    public static UnityAction<Vertex, Vertex> OnEdgeCreated;
+    public static UnityAction<Vertex, Vertex, int> OnEdgeCreated;
 
     private void Start()
     {
@@ -30,12 +30,12 @@ public class EdgeDrawer : MonoBehaviour
     private void AddEdge(Vertex v1, Vertex v2)
     {
         var line = Instantiate(linePrefab);
-        line.InitLine(v1.transform.position, v2.transform.position);
+        var weight = line.InitLine(v1.transform.position, v2.transform.position);
 
         connectedVertices.Add(v1);
         connectedVertices.Add(v2);
 
-        OnEdgeCreated?.Invoke(v1, v2);
+        OnEdgeCreated?.Invoke(v1, v2, weight);
     }
 
     private void AddVertex(Vertex v)
