@@ -1,12 +1,15 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EdgeDrawer : MonoBehaviour
 {
     List<Vertex> connectedVertices = new();
     [SerializeField] Line linePrefab;
     List<Vertex> vertexStack = new();
+
+    public static UnityAction<Vertex, Vertex> OnEdgeCreated;
 
     private void Start()
     {
@@ -31,6 +34,8 @@ public class EdgeDrawer : MonoBehaviour
 
         connectedVertices.Add(v1);
         connectedVertices.Add(v2);
+
+        OnEdgeCreated?.Invoke(v1, v2);
     }
 
     private void AddVertex(Vertex v)

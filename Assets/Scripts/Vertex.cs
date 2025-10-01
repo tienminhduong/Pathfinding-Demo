@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
-
     private bool isDragging = false;
     private Vector3 offset; // Offset between mouse position and object's pivot
     private Sprite normalSprite;
@@ -73,7 +72,10 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
                 OnVertexDeselected?.Invoke(this);
             }
         }
-            
+        else if (VerticesManager.Instance.CurrentInputState == InputState.SelectStartingPoint)
+        {
+            VerticesManager.Instance.CreateBubbles(transform.position);
+        }
     }
 
     public void Unselect()
