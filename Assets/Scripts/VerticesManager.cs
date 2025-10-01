@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class VerticesManager : MonoBehaviour
 {
     #region Singleton
@@ -21,8 +22,8 @@ public class VerticesManager : MonoBehaviour
     }
     #endregion
     [SerializeField] GameObject vertexPrefab;
-    [SerializeField] TextMeshProUGUI changeModeButtonText;
-
+    [SerializeField] Text changeModeButtonText;
+    [SerializeField] Toggle tgMode;
     [SerializeField] InputState state;
 
 
@@ -42,6 +43,7 @@ public class VerticesManager : MonoBehaviour
 
     public void CreateVertex()
     {
+        tgMode.isOn = true;
         Instantiate(vertexPrefab);
     }
 
@@ -50,12 +52,12 @@ public class VerticesManager : MonoBehaviour
         if (state == InputState.CreateEdge)
         {
             state = InputState.MoveVertex;
-            changeModeButtonText.text = "Dời đỉnh";
+            changeModeButtonText.text = "Chế độ Dời khối";
         }
         else
         {
             state = InputState.CreateEdge;
-            changeModeButtonText.text = "Tạo cạnh";
+            changeModeButtonText.text = "Chế độ Tạo đường";
         }
     }
 }

@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495d57d6a222840418afc810963706b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vertex
+  highLightSprite: {fileID: -330113347, guid: b9322abd4f2aaad4c979c052daa67961, type: 3}
 --- !u!61 &-7916791542396140589
 BoxCollider2D:
   m_ObjectHideFlags: 0
