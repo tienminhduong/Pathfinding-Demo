@@ -1,56 +1,56 @@
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EdgeDrawer : MonoBehaviour
 {
-    public LineRenderer lineRenderer;
+    List<Vertex> connectedVertices = new();
+    [SerializeField] Line linePrefab;
+    List<Vertex> vertexStack = new();
 
-    void Start()
+    private void Start()
     {
-        // Get the LineRenderer component if not assigned in Inspector
-        if (lineRenderer == null)
-        {
-            lineRenderer = GetComponent<LineRenderer>();
-        }
-
-        // Example: Drawing a simple two-point line
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, new Vector3(-2, 0, 0)); // Start point
-        lineRenderer.SetPosition(1, new Vector3(2, 0, 0));  // End point
-        lineRenderer.widthMultiplier = 0.15f;
     }
 
-    // Example: Updating line points dynamically
-    public void UpdateLine(Vector3 startPoint, Vector3 endPoint)
+    private void OnEnable()
     {
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, startPoint);
-        lineRenderer.SetPosition(1, endPoint);
+        Vertex.OnVertexSelected += AddVertex;
+        Vertex.OnVertexDeselected += RemoveVertex;
     }
-}
 
-/*
- * public class MultiLineSeparate : MonoBehaviour
-{
-    public Transform[] startPoints;
-    public Transform[] endPoints;
-    public GameObject linePrefab; // prefab with LineRenderer
-
-    void Start()
+    private void OnDisable()
     {
-        for (int i = 0; i < Mathf.Min(startPoints.Length, endPoints.Length); i++)
+        Vertex.OnVertexSelected -= AddVertex;
+        Vertex.OnVertexDeselected -= RemoveVertex;
+    }
+
+    private void AddEdge(Vertex v1, Vertex v2)
+    {
+        var line = Instantiate(linePrefab);
+        line.InitLine(v1.transform.position, v2.transform.position);
+
+        connectedVertices.Add(v1);
+        connectedVertices.Add(v2);
+    }
+
+    private void AddVertex(Vertex v)
+    {
+        vertexStack.Add(v);
+        if (vertexStack.Count == 2)
         {
-            var line = Instantiate(linePrefab);
-            var lr = line.GetComponent<LineRenderer>();
-
-            lr.positionCount = 2;
-            lr.startWidth = 0.05f;
-            lr.endWidth = 0.05f;
-            lr.useWorldSpace = true;
-
-            lr.SetPosition(0, startPoints[i].position);
-            lr.SetPosition(1, endPoints[i].position);
+            var v1 = vertexStack[0];
+            var v2 = vertexStack[1];
+            vertexStack.Clear();
+            AddEdge(v1, v2);
+            v1.Unselect();
+            v2.Unselect();
         }
     }
-}
 
-*/
+    private void RemoveVertex(Vertex v)
+    {
+        if (vertexStack.Contains(v))
+            vertexStack.Remove(v);
+    }
+
+}

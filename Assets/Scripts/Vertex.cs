@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,9 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     [SerializeField] Sprite highLightSprite;
     private bool isSelected = false;
     private SpriteRenderer spr = null;
+
+    public static UnityAction<Vertex> OnVertexSelected;
+    public static UnityAction<Vertex> OnVertexDeselected;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,13 +61,16 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
         if (VerticesManager.Instance.CurrentInputState == InputState.CreateEdge)
         {
             isSelected = !isSelected;
+
             if (isSelected)
             {
                 spr.sprite = highLightSprite;
+                OnVertexSelected?.Invoke(this);
             }
             else
             {
                 spr.sprite = normalSprite;
+                OnVertexDeselected?.Invoke(this);
             }
         }
             
@@ -72,6 +79,7 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     public void Unselect()
     {
         isSelected = false;
+        OnVertexDeselected?.Invoke(this);
         spr.sprite = normalSprite;
     }    
 }
