@@ -1,10 +1,13 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Bubbles : MonoBehaviour
 {
     [SerializeField] List<int> path;
+    [SerializeField] List<int> points;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,18 +23,21 @@ public class Bubbles : MonoBehaviour
     private void SelectATPAth()
     {
         path = AlgorithmHandler.Instance.ATPath;
+        points = AlgorithmHandler.Instance.ATVisitedOrder;
         Move();
     }
 
     private void SelectAKTPath()
     {
         path = AlgorithmHandler.Instance.AKTPath;
+        points = AlgorithmHandler.Instance.AKTVisitedOrder;
         Move();
     }
 
     private void SelectAStarPath()
     {
         path = AlgorithmHandler.Instance.AStarPath;
+        points = AlgorithmHandler.Instance.AStarVisitedOrder;
         Move();
     }
 
@@ -52,13 +58,23 @@ public class Bubbles : MonoBehaviour
 
     public void Move()
     {
-        if (path.Count < 2) return;
+        Debug.Log("Run");
+        StartCoroutine(MoveCoroutine());
+    }
+
+    private IEnumerator MoveCoroutine()
+    {
+        // Wait for flashing to finish
+        yield return StartCoroutine(Vertex.FlashVerticies(points));
+
+        // Then start moving
+        if (path.Count < 2) yield break;
         Vector3[] waypoints = new Vector3[path.Count];
         for (int i = 0; i < path.Count; i++)
         {
             waypoints[i] = VerticesManager.Instance.Vertices[path[i]].transform.position;
         }
-        var seq = DOTween.Sequence();
+        var seq = DG.Tweening.DOTween.Sequence();
         seq.Append(transform.DOPath(waypoints, waypoints.Length, PathType.Linear).SetEase(Ease.Linear));
     }
 }

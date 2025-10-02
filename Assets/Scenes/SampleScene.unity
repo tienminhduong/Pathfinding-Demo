@@ -2743,6 +2743,9 @@ MonoBehaviour:
   ATPath: 
   AKTPath: 
   AStarPath: 
+  ATVisitedOrder: 
+  AKTVisitedOrder: 
+  AStarVisitedOrder: 
 --- !u!4 &1914041956
 Transform:
   m_ObjectHideFlags: 0

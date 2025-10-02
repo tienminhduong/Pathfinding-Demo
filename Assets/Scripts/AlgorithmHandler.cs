@@ -29,6 +29,10 @@ public class AlgorithmHandler : MonoBehaviour
     public List<int> AKTPath;
     public List<int> AStarPath;
 
+    public List<int> ATVisitedOrder;
+    public List<int> AKTVisitedOrder;
+    public List<int> AStarVisitedOrder;
+
     public static UnityAction OnATPressed;
     public static UnityAction OnAKTPressed;
     public static UnityAction OnAStarPressed;
@@ -77,9 +81,13 @@ public class AlgorithmHandler : MonoBehaviour
 
     public void Calculate()
     {
-        ATPath = Algorithms.AT(graph, start, goal);
-        AKTPath = Algorithms.AKT(graph, start, goal);
-        AStarPath = Algorithms.Astar(graph, start, goal);
+        ATVisitedOrder = new List<int>();
+        AKTVisitedOrder = new List<int>();
+        AStarVisitedOrder = new List<int>();
+
+        ATPath = Algorithms.AT(graph, start, goal, out ATVisitedOrder);
+        AKTPath = Algorithms.AKT(graph, start, goal, out AKTVisitedOrder);
+        AStarPath = Algorithms.Astar(graph, start, goal, out AStarVisitedOrder);
     }
 }
 

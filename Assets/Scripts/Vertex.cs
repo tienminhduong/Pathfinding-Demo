@@ -1,3 +1,7 @@
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +23,21 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
     public static UnityAction<Vertex> OnStartVertexSelected;
     public static UnityAction<Vertex> OnGoalVertexSelected;
 
+    public static IEnumerator FlashVerticies(List<int> verticies)
+    {
+        foreach (var v in verticies)
+        {
+            var vertex = VerticesManager.Instance.Vertices[v];
+            var spr = vertex.GetComponent<SpriteRenderer>();
+            Color originalColor = spr.color;
+            Debug.Log($"Visited vertex: {v}");
+            spr.color = Color.red; // Flash to yellow
+            yield return new WaitForSeconds(1f);
+            spr.color = originalColor; // Restore color
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,6 +57,8 @@ public class Vertex : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPo
             transform.position = mouseWorld + offset;
             
         }
+
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)

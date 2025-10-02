@@ -62,11 +62,12 @@ class Algorithms
         return Math.Abs(u - goal); //thay d?i th�nh t�nh kho?ng c�ch t? di?m u -> goal b?ng c�ng th?c t?a d? tr? nhau g� d�
     }
 
-    public static List<int> AT(int[,] graph, int start, int goal)
+    public static List<int> AT(int[,] graph, int start, int goal, out List<int> visitedOrder)
     {
         int n = graph.GetLength(0);
         int[] dist = new int[n];
         int[] parent = new int[n];
+        visitedOrder = new List<int>();
         for (int i = 0; i < n; i++) { dist[i] = int.MaxValue; parent[i] = -1; }
 
         var open = new SortedSet<EntryAT>();
@@ -81,6 +82,7 @@ class Algorithms
             int d = top.cost;
             int u = top.v;
             if (d != dist[u]) continue;
+            visitedOrder.Add(u);
             if (u == goal) break;
 
             for (int v = 0; v < n; v++)
@@ -104,7 +106,7 @@ class Algorithms
         //Console.WriteLine("Cost = " + dist[goal]);
     }
 
-    public static List<int> AKT(int[,] graph, int start, int goal)
+    public static List<int> AKT(int[,] graph, int start, int goal, out List<int> visitedOrder)
     {
         int n = graph.GetLength(0);
         int[] g = new int[n];
@@ -122,7 +124,7 @@ class Algorithms
         g[start] = 0;
         open.Add(new EntryAKT { f = g[start] + h[start], id = idCounter++, v = start, g = 0 });
 
-        var expandedOrder = new List<int>();
+        visitedOrder = new List<int>();
 
         while (open.Count > 0)
         {
@@ -132,7 +134,7 @@ class Algorithms
             int curG = top.g;
             if (curG != g[curV]) continue;
 
-            expandedOrder.Add(curV);
+            visitedOrder.Add(curV);
             if (curV == goal) break;
 
             for (int v = 0; v < n; v++)
@@ -151,14 +153,14 @@ class Algorithms
         }
 
         Console.Write("AKT expanded order: ");
-        foreach (var x in expandedOrder) Console.Write(x + " ");
+        foreach (var x in visitedOrder) Console.Write(x + " ");
         Console.WriteLine();
 
         if (g[goal] == int.MaxValue) return new();
         return PrintPath(parent, goal);
     }
 
-    public static List<int> Astar(int[,] graph, int start, int goal)
+    public static List<int> Astar(int[,] graph, int start, int goal, out List<int> visitedOrder)
     {
         int n = graph.GetLength(0);
         int[] g = new int[n];
@@ -171,6 +173,8 @@ class Algorithms
         g[start] = 0;
         open.Add(new EntryAStar { f = g[start] + Heuristic(start, goal), id = idCounter++, v = start, g = 0, parent = -1 });
 
+        visitedOrder = new List<int>();
+
         while (open.Count > 0)
         {
             var top = open.Min;
@@ -182,6 +186,8 @@ class Algorithms
             if (closed[curV]) continue;
             closed[curV] = true;
             parent[curV] = curParent;
+
+            visitedOrder.Add(curV);
             if (curV == goal) break;
 
             for (int v = 0; v < n; v++)

@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d228c1fc4e8d5ba4c90cb4537d2934ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bubbles
+  path: 
+  points: 
 --- !u!1 &6643556000505711593
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +125,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 5439474025244060994, guid: 493a62e5d8fa58b4ea38f8f2aa158fe3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
